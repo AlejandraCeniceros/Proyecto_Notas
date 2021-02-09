@@ -1,3 +1,8 @@
+@extends('layout') 
+        
+        
+    @section('content')
+
         <main class="content">
             <div class="cards">
                 <div class="card card-center">
@@ -17,4 +22,4 @@
                 </div>
             </div>
         </main>
-    
+    @endsection
