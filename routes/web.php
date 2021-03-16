@@ -16,33 +16,15 @@ use App\Models\Notas;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\NotasController@welcome');
 
-Route::get('notas' , 'App\Http\Controllers\NotasController@index')->name('notas.index');
+Route ::get('notas', 'App\Http\Controllers\NotasController@index')->name('notas.index');
 
 
+Route:: get('agregar', 'App\Http\Controllers\NotasController@agregar');
 
-Route::get('agregar', function () {
-    return view('agregar');
-});
+Route::post('crear', 'App\Http\Controllers\NotasController@crear' )->name('notas.store');
 
+Route:: get('notas/{id}/ediar', 'App\Http\Controllers\NotasController@editar' ) -> name('notas.edit');
 
-Route::post('crear', function(Request $request){
-
-    Notas::create([
-        'titulo' => $request-> input('title'),
-        'contenido' => $request-> input('content'),
-    ]);
-    
-    return redirect('/notas');
-
-}) -> name('notas.store');
-
-Route::get('notas/{id}/editar', function ($id){
-    $notas = Notas::find($id); //DB::table('notas')->where('id', $id) ->first();
-
-        return view('editar', ['notas' => $notas]);
-
-    })->name('notas.edit');
+Route:: put('notas/{notas}/ediar', 'App\Http\Controllers\NotasController@update' ) -> name('notas.update');
