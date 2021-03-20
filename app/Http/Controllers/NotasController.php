@@ -23,6 +23,15 @@ class NotasController extends Controller
     
     }
 
+    public function destroy ($id)
+        {
+            $notas = Notas::find($id);
+
+            $notas->delete();
+
+            return redirect('/notas');
+        }
+
     public function editar ($id) {
         $notas = Notas:: find($id);
         
